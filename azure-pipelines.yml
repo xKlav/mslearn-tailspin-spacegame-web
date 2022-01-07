@@ -5,12 +5,17 @@ pool:
   vmImage: ubuntu-18.04
   demands:
   - npm
+variables:
+  buildConfiguration: Release
+  wwwrootDir: Tailspin.SpaceGame.Web/wwwroot
+  dotnetSdkVersion: 5.x
+
 steps:
 - task: UseDotNet@2
-  displayName: Use .NET SDK 5.x
+  displayName: Use .NET SDK $(dotnetSdkVersion)
   inputs:
     packageType: sdk
-    version: 5.x
+    version: $(dotnetSdkVersion)
 - task: Npm@1
   displayName: Run npm install
   inputs:
